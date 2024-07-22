@@ -10,6 +10,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # grants permissions for the artifact to be uploaded
+    permissions:
+      contents: read
+      packages: write
 
     steps:
     #Check out report under $GITHUB_WORKSPACE - job can access and clone

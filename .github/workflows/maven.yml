@@ -96,10 +96,10 @@ jobs:
         # Enable debug mode. 1 for on
         debug: 1 # optional
         # Enable the storage of a baseline file. Takes true or fales
-        store_baseline_file: true # optional
+        #store_baseline_file: true # optional
         # Enter the branch name where the baseline file should be stored
-        store_baseline_file_branch: baseline # optional
+        #store_baseline_file_branch: baseline # optional
         # From which results should the baseline file be created. standard = full results || filtered = filtered results
-        create_baseline_from: standard # optional
+        #create_baseline_from: standard # optional
         # Fail the build upon findings. Takes true or false
         fail_build: false # optional

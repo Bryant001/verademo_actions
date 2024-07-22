@@ -32,7 +32,7 @@ jobs:
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v4
       with:
-        name: verademo-artifact
+        name: verademo
         path: /home/runner/work/verademo/verademo/app/target/verademo.war
         retention-days: 5
           

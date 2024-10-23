@@ -61,7 +61,6 @@ jobs:
             vid: ${{ secrets.VERACODE_API_ID }}
             vkey: ${{ secrets.VERACODE_API_KEY }}
             file: verademo.war
-            token: ${{ secrets.GH_TOKEN }}
             request_policy: "JP_Test"
             debug: 1
             fail_build: false

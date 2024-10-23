@@ -50,7 +50,7 @@ jobs:
             request_policy: "JP_Test"
             debug: 1
             fail_build: false
-         - uses: actions/upload-artifact@v4
+        - uses: actions/upload-artifact@v4
           with:
             name: Veracode Pipeline-Scan Results
             path: results.json 

@@ -1,0 +1,82 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # grants permissions for the artifact to be uploaded
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    #Check out report under $GITHUB_WORKSPACE - job can access and clone
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+        
+    - name: Build with Maven
+      run: mvn -B package --file app/pom.xml
+      
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+      # Artifact name
+        name: verademo
+        # A file, directory, or wildcard pattern that describes what to upload
+        path: /home/runner/work/verademo/verademo/app/target/verademo.war
+        
+  pipeline_scan:
+      needs: build
+      runs-on: ubuntu-latest
+      name: Veracode Pipeline Scan
+      steps:
+        - name: checkout repo
+          uses: actions/checkout@v3
+
+        - name: get archive
+          uses: actions/download-artifact@v4
+          with:
+            name: verademo.war
+        - name: pipeline-scan action step
+          id: pipelien-scan
+          uses: veracode/Veracode-pipeline-scan-action@esd-true
+          with:
+            vid: ${{ secrets.VERACODE_API_ID }}
+            vkey: ${{ secrets.VERACODE_API_KEY }}
+            file: "verademo.war" 
+            request_policy: "JP_Test"
+            debug: 1
+            fail_build: false
+         - uses: actions/upload-artifact@v4
+          with:
+            name: Veracode Pipeline-Scan Results
+            path: results.json 
+
+  veracode-fix:
+    runs-on: ubuntu-latest
+    needs: pipeline_scan
+    name: Veracode Fix
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: get flaw file
+        uses: actions/download-artifact@v4
+        with:
+          name: Veracode Pipeline-Scan Results
+          
+      - name: Create fixes from static findings
+        id: convert
+        uses: Veracode/veracode-fix@main
+        with:
+          inputFile: filtered_results.json
+          vid: ${{ secrets.VID }}
+          vkey: ${{ secrets.VKEY }}
+          source_base_path_1: "com/:src/main/java/com/"
+          source_base_path_2: "WEB-INF:src/main/webapp/WEB-INF"
+          language: java
+          prComment: true
+          fixType: single

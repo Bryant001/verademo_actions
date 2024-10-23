@@ -96,6 +96,6 @@ jobs:
           prComment: true
           fixType: batch
           files: all
-          debug: true
+          debug: false
           createPR: true
           cwe: '78'

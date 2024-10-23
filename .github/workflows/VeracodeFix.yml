@@ -98,4 +98,4 @@ jobs:
           files: all
           debug: false
           createPR: true
-          cwe: '78'
+          cwe: '89'

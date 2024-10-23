@@ -28,9 +28,9 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
       # Artifact name
-        name: verademo
+        name: verademo.war
         # A file, directory, or wildcard pattern that describes what to upload
-        path: /home/runner/work/verademo/verademo/app/target/verademo.war
+        path: app/target/verademo.war
         
   pipeline_scan:
       needs: build

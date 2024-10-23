@@ -35,6 +35,9 @@ jobs:
   pipeline_scan:
       needs: build
       runs-on: ubuntu-latest
+      permissions:
+        contents: read
+        packages: write
       name: Veracode Pipeline Scan
       steps:
         - name: checkout repo

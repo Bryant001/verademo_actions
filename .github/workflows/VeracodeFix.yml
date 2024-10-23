@@ -51,8 +51,10 @@ jobs:
           uses: actions/download-artifact@v4
           with:
             name: verademo.war
-        - name: pipeline-scan action step
+        - name: check permissions
           run: ls -la app/target/verademo.war
+          
+        - name: pipeline-scan action step
           id: pipeline-scan
           uses: veracode/Veracode-pipeline-scan-action@esd-true
           with:

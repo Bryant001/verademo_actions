@@ -97,4 +97,5 @@ jobs:
           fixType: batch
           files: all
           debug: true
-          createPR: true 
+          createPR: true
+          cwe: '78'

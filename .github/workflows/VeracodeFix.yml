@@ -52,7 +52,8 @@ jobs:
           with:
             name: verademo.war
         - name: pipeline-scan action step
-          id: pipelien-scan
+          run: ls -la app/target/verademo.war
+          id: pipeline-scan
           uses: veracode/Veracode-pipeline-scan-action@esd-true
           with:
             vid: ${{ secrets.VERACODE_API_ID }}

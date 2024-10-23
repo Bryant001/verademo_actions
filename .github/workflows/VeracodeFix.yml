@@ -52,7 +52,7 @@ jobs:
           with:
             name: verademo.war
         - name: check permissions
-          run: ls -la app/target/verademo.war
+          run: ls -la verademo.war
           
         - name: pipeline-scan action step
           id: pipeline-scan
@@ -60,7 +60,7 @@ jobs:
           with:
             vid: ${{ secrets.VERACODE_API_ID }}
             vkey: ${{ secrets.VERACODE_API_KEY }}
-            file: app/target/verademo.war
+            file: verademo.war
             token: ${{ secrets.GH_TOKEN }}
             request_policy: "JP_Test"
             debug: 1

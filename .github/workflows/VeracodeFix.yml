@@ -94,4 +94,7 @@ jobs:
           source_base_path_2: "WEB-INF:src/main/webapp/WEB-INF"
           language: java
           prComment: true
-          fixType: single
+          fixType: batch
+          files: all
+          debug: true
+          createPR: true 

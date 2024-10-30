@@ -95,4 +95,4 @@ jobs:
           cwe: '89'
           prComment: true
           fixType: single
-          debug: false
+          debug: true

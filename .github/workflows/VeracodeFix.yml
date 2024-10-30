@@ -92,6 +92,7 @@ jobs:
           source_base_path_1: "com/:src/main/java/com/"
           source_base_path_2: "WEB-INF:src/main/webapp/WEB-INF"
           language: java
+          cwe: '89'
           prComment: true
           fixType: single
           debug: false
